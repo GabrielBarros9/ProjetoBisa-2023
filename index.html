@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Primeira Etapa</title>
+</head>
+<body>
+
+<h1>Configurar Ambiente de Desenvolvimento;</h1>
+
+<p>Configure o ambiente de desenvolvimento na sua máquina. Caso você já tenha as ferramentas abaixo, 
+<br>instaladas e configuradas na sua máquina, desinstale a ferramenta quando estiver fazendo a respectiva tarefa, 
+<br>e instale e configure novamente, do zero. Realize as seguintes tarefas, na ordem:</p>
+
+<ol>
+    <li>Instale e configure o Apache 2.4; </li>
+    <li>Instale e configure o PHP7.4;</li>
+    <li>Instale e configure o MySQL 8+;</li>
+    <li>Instale e configure o DBeaver;</li>
+        <ol type="a">
+            <li>Configure também, uma conexão a uma base vazia;</li>
+        </ol>
+    <li>Instale e configure o Git oficial, de <a href="https://git-scm.com/">https://git-scm.com/</a></li>
+    <li>Instale e configure o VSCode +;</li>
+        <ol type="a"> 
+            <li>Configure pelo menos 4, podem ser mais, extensões realmente úteis, para PHP, HTML, CSS e
+            Javascript;</li>
+        </ol>
+</ol>
+
+<h2>Primeiro Passo: Instalação e Configuração do Apache2;</h2>
+<ol>
+    <li>Primeiro Pesquisei o Apache2 e o resultado me levou para;</li>
+        <ul>
+            <li><a href="https://www.apachelounge.com/download/">https://www.apachelounge.com/download/</a></li>
+        </ul>
+<br>
+    <li>Fazer o download e extrair o "Apache2" / Entrar no diretório;</li>
+<br>
+    <li>Pegar o diretório do "Apache24" e colocar no "(C:)";</li>
+<br>
+    <li>Procurar o diretório "Conf" / Abrir o arquivo "httpd.conf" com algum editor de texto;</li>
+<br>
+    <li>Em seguida: Ir no terminal do Windows e executar como administrador e verificar se a porta 80 
+    <br>esta sendo utilizada com o comando netstat -anb | findstr 0.0.0.0:80</li>
+<br>
+    <li>Depois de verificar a porta, volte para o arquivo "httpd.conf" e 
+    <br>execute o comando "Ctrl + f" (Barra de Pesquisa) para pesquisar "C:/Apache24" ou Define SRVROOT para saber a onde 
+    <br>esta a raiz do servidoz, é necessário que o diretório esteja no mesmo caminho;
+    </li>
+<br>
+    <li>Agora vem a parte dos comandos para executar as configurações do "httpd.conf";</li>
+        <ol type="a">
+            <li>"Ctrl + f" - #ServerName www.example.com:80 / Descomentar e alterar para 
+            <br>localhost:80</li>
+            <li>Após isso abra o terminal e execute os seguintes comandos;</li>
+            <li>cd c:\Apache24>cd bin</li>
+            <li>c:\Apache24\bin>dir</li>
+            <li>c:\Apache24\bin>httpd.exe -k install</li>
+        </ol>
+<br>
+    <li>Depois de executar o comando e instalar, vá em "Serviços" do Windows e verifique se o "Apache2.4" 
+    <br>esta la e inicie o serviço;</li>
+<br>
+    <li>Se iniciar, deu tudo certo na primeira etapa e o Apache foi instalado e configurado corretamente;</li>
+<br>
+    <li>"Ctrl + f" AddType application/x-gzip .gz .tgz / Apenas vai adicionar os seguintes comandos; - (finalizando as 
+    <br>configurações restantes);</li>
+        <ol type="a">
+            <li>AddHandler application/x-httpd-php .php</li>
+            <li>AddType application/x-httpd-php .php .html</li>
+            <li>Action application/x-httpd-php "C:\PHP7.4"\php-cgi.exe</li>
+        </ol>
+<br>
+    <li>"Ctrl +f" LoadModule xm12enc_module modules/mod_xm12enc.so / Apenas vai adicionar o seguinte comando;</li>
+            <ol type="a">
+                <li>LoadModule php_module "C:\PHP7.4\php7apache2_4.dll</li>
+            </ol>
+<br>
+    <li>Ir no final do arquivo "httpd.conf" e adicionar o comando;</li>
+            <ol type="a">
+                <li>PHPIniDir "C:\PHP7.4"</li>
+                <li>Timeout 240</li>
+            </ol>
+<br>
+    <li>"Ctrl + f" DirectoryIndex index.html / Alturar para: DirectoryIndex index.php index.html</li>
+<br>
+    <li>Após finalizar todas essas configurações, vá em "Serviços" e reiniciei o serviço do Apache2.4
+    <br>se caso não der error, instalações e configurações feitas com sucessos;</li>
+<br>
+    <li>E pronto, Instalação e Configuração feita com sucesso;</li>
+</ol>
+<h2>Segundo Passo: Instalação e Configuração do PHP7.4;</h2>
+<ol>
+    <li>Primeiro Pesquisei o PHP7.4 e o resultado me levou para;</li>
+        <ul>
+            <li><a href="https://windows.php.net/download#php-8.1">https://windows.php.net/download#php-8.1</a></li>
+        </ul>
+<br>
+    <li>Fazer download e extrair o "PHP 7.4" - VC15 x64 Thread Safe (zip);</li>
+<br>
+    <li>Pegar o diretório do "PHP7.4" e colocar no "(C:)";</li>
+<br>
+    <li>Renomear o diretório para "PHP7.4" (Opcional);</li>
+<br>
+    <li>Entrar no diretório e procurar o arquivo "php.ini-development"
+    <br>renomea-lo para "php.ini" / Abrir com algum editor de texto;</li>
+<br>
+    <li>Agora vem a parte dos comandos para executar as configurações do "php.ini";</li>
+
+        <ol type="a">
+            <li>"Ctrl + f" - ;extension=curl, ;extension=gd2, ;extension=openssl,;extension=Pdo_mysq, ;extension=mbstring,
+            <br>Descomentar;</li>
+            <li>"Ctrl + f" - ;session.save_path = "/temp" / Descomentar e alterar para: session.save_path = "C:\Windows\temp";</li>
+            <li>"Ctrl +f" error_reporting = E_ALL / Alterar para: error_reporting = E_ALL  & ~E_DEPRECATED  & ~E_STRICT;</li>
+            <li>"Ctrl + f" ;extension_dir = "ext" / Descomentar;</li>
+        </ol>
+<br>
+    <li>Depois que terminar de configurar o arquivo "php.ini", volte para o arquivo "httpd.conf" e finalize as configurações 
+    <br>restantes;</li>
+</ol>
+
+<h2>Terceiro Passo: Instalação e Configuração do MySQL 8+;</h2>
+<ol>
+    <li>Primeiro Pesquisei o MySQL e o resultado me levou para;</li>
+        <ul>
+            <li><a href="https://www.mysql.com/downloads/">https://www.mysql.com/downloads/</a></li>
+        </ul>
+<br>
+    <li>Procurar por "MySQL Community Edition (GPL)" / Fazer download do "MySQL on Windows (Installer & Tools)";</li>
+        <ol type="a">
+            <li>"MySQL Installer (Servidor mysql + interface Workbench)";</li>
+            <li>"MySQL Installer 8.0.13 - Windows (x86, 32-bit), MSI Installer - 8.1.0.13 (313.8M) Download";</li>
+        </ol>
+<br>
+    <li>Assim que o download for concluído / Abrir o instalador;</li>
+        <ol type="a">
+            <li>Aceitar os termos de licenças;</li>
+            <li>Developer Default / Permite instalar todo o MySQL;</li>
+            <li>C:\Programa Files\MySQL\MySQL Server 8.0 / Diretório de instalação;</li>
+            <li>Upgrade dos pré-requistos do MySQL - MySQL para Visual Studio e Connector do Python;</li>
+            <li>Após isso dê um "Execute" para dar continuação a toda instalação;</li>
+            <li>Em seguida: Será necessário configurar o MySQL Server, MySQL Router, Samples e Examples;</li>
+            <li>Standalone MySQL Server / Classic MySQL Replication (Padrão) / Nessa parte é melhor
+            <br>deixar a configuração recomendada;</li>
+            <li>Config Type: Development Computer (Padrão) / Nessa parte é melhor
+            <br>deixar as configurações recomendadas;</li>
+            <li>Use Strong Password Encryption For Authentication (Padrão) / Usar Senha forte para 
+            <br>autenticar;</li>
+            <li>Em seguida: Será necessário criar uma senha para autenticar o MySQL (Opcional);</li>
+            <li>MySQL User Accounts / Após criar a senha, terá que adicionar um usuário no MySQL;</li>
+            <li>Add User / Criar um usuário de autenticação (Opcional);</li>
+            <li>Host: All Hosts (Padrão) / Ponto de acesso do usuário, para todos os lugares;</li>
+            <li>Roles: DB Admin (Padrão) / Privilegio do usuário;</li>
+            <li>Colocar a senha criada para finalizar a autenticação;</li>
+            <li>Windows Service Name: MySQL80 (Padrão) / Nome do serviço - (Nessa parte é melhor
+            <br>deixar as configurações recomendadas);</li>
+            <li>Após isso dê um "Execute" para dar continuação a toda instalação;</li>
+            <li>O MySQL Router não precisa ser configurador, a não ser que seja um profissinal de 
+            <br>de infraestrutura;</li>
+            <li>Samples e Examples - MySQL Server8.0.13 (Padrão) / Bancos de exemplos</li>      
+            <li>User: root and Password / Usuário root (Padrão) ou pode ser o usário que criou 
+            <br> e a senha precisa ser a que foi criada;</li>
+            <li>Após isso dê um "Execute" para dar continuação a toda instalação;</li>
+            <li>Instalação concluída / Nessa parte é melhor deixar as configurações recomendadas;</li>
+        </ol>
+<br>
+    <li>Abrir o MySQL Workbench / Abrir o MySQL Connections, vai tentar conectar com o root e 
+    <br>pôr a senha que foi criada;</li>
+<br>
+    <li>Caso não queira conectar com o root é só selecionar no MySQL Connections (+) e pôr o usuário que foi criado 
+    <br>junto com a senha criada;</li>
+<br>
+    <li>Após abrir, vá em SQL (+) e execute o comando show databases; e dê "Ctrl + enter"; / irá executar 
+    <br>e mostrar os bancos de dados;</li>
+<br>
+    <li>Execute também o comando use sakila; dê novamente "Ctrl + enter" / Em seguida: Dê o comando 
+    <br>show tables; / irá mostrar as tabelas;</li>
+<br>
+    <li>Execute mais uma vez e dê mais um comando select * from actor / irá exibir todos os campos e todas as colunas 
+    <br>da tabela actor;</li>
+<br>
+    <li>E Pronto, Instalação e Configuração Feita Com Sucesso;</li>
+</ol>
+
+<h2>Quarto Passo: Instalação e Configuração do DBeaver;</h2>
+<ol>
+    <li>Primeiro Pesquisei o DBeaver e o resultado me levou para;</li>
+        <ul>
+            <li><a href="https://www.dbeaver.io/download/">https://www.dbeaver.io/download/</a></li>
+        </ul>
+<br>
+    <li>Fazer download do "DBeaver Windows (Installer)";</li>
+<br>
+    <li>Após a instalação e configurações, abra o DBeaver vá no ícone azul(+) e seleciona o MySQL;</li>
+<br>
+    <li>Conecte com o seu banco de dados (MySQL);</li>
+<br>
+    <li>E Pronto, Instalação e Configuração Feita Com Sucesso;</li> 
+</ol>
+<h2>Quinto Passo: Instalação e Configuração do Git oficial;</h2>
+<ol>
+    <li>Primeiro Pesquisei o Git oficial e o resultado me levou para;</li>
+        <ul>
+            <li><a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
+        </ul>
+<br>
+    <li>Fazer download do "Standalone Installer (Git for Windows - 64-bit for Windows Setup)";</li>
+<br>
+    <li>Assim que o download for concluído / Abrir o instalador;</li>
+        <ol type ="a">
+            <li>Aceitar os termos de licenças;</li>
+            <li>C:\Programa Files\Git / Diretório de instalação;</li>
+            <li>Select Components / Nessa parte é melhor deixar as configurações recomendadas;</li>
+            <li>Choosing the default editor user by git - which editor would you like Git to use / Escolha um 
+            <br>editor de texto de sua preferência ou o que estar usando atualmente;</li>
+            <li>Let Git decide (Padrão / Opcional) ou Overside the default branch same for new repositório (Opcional) /
+            <br>Branch como master (Padrão / Opcional) ou Branch como main, truck e development (Opcional);</li>
+            <li>Adjusting your PATH environment - use Git from Git bash only, Git from the command line and also from 
+            <br>3rd-party software (Padrão) e use Git and optional Unix tools from the Command Prompt / Usar o Git apenas 
+            <br> com o Git bash, usar o terminal customizado do Git e Usar o Git junto com CMD; / Selecionei o usar o Git
+            <br>com"use Git and optional Unix tools from the Command Prompt...";</li>
+            <li>Choosing the SSH executable - use bundled OpenSSH (Padrão) / usar o OpenSSH com o Git (Padrão);</li>
+            <li>Depois disso o restante da instalação e configuração pode-se deixar como Padrão;</li>
+            <li>Após isso a instalação e configuração será feita com sucesso;</li>
+            <li>Depois vá na área de trabalho dentro de um diretório de preferência dentro do seu projeto atual / Com o 
+            <br>botão direito abra o "Git bash here";</li>
+        </ol>
+<br>
+    <li>Use os seguintes comandos;</li>
+        <ol type="a">
+            <li>git config --global user.name "(seu nome)";</li>
+            <li>git config --global user.email "(seu email do Github);</li>
+            <li>git init / para dar inicio ao projeto;</li>
+            <li>touch test.txt / para testar e subir pro projeto;</li>
+            <li>git add . / informar que tem novos arquivos e novas modificações;</li>
+            <li>git commit -m "Primeiro Commit" / informar que tem intenção de subir os arquivos;</li>
+            <li>ssh-keygen -t rsa -C "(seu email do Github)"</li>/ Criar uma chave ssh para conectar com a conta do
+            <br>Github e subir os arquivos;</li>
+            <li>Dê enter / Depois crie uma senha;</li>
+            <li>Criar senha para ficar vinculada a sua chave ssh (A senha não precisa ser a mesma do Github;</li>
+            <li>Após isso irá gerar uma chave ssh para poder transferir os arquivos;</li>
+            <li>notepad (e o caminho do diretorio).ssh/id_rsa.pub / Pegar o texto do bloco de notas e colocar no Github;</li>
+            <li>Depois vá no site do Github (com Sua conta) vá em configuração e procure SSH AND GPG KEYS /  
+            <br>Coloque o texto copiado dentro do SSH KEYS, coloque o titulo "Minha SSH" também para facilitar e 
+            <br>adicione;</li>
+            <li>Após isso ssh conectado, para verificar se estar pegando, volte no diretório do projeto e abra o
+            <br>"Git bash here" novamente e execute o comando: ssh -T git@github.com / Irá perguntar se pretende 
+            <br>continuar com a coneção, digite "yes" e pedira a senha criada para chave ssh / Caso dê certo: Autenticação 
+            <br>concluída;</li>
+            <li>Proximo passo é ir no Github e criar um repositório teste-ssh para o projeto (Opcional);</li>
+            <li>Último passo é ir novamente no "Git bash here" e dar o comando git remote add origin git@github.com:Nome do
+            <br>Usuário do github/teste-ssh / Seu nome no github junto com o nome do repositório criado;</li>
+            <li>Em seguida: Dê o comando: git push origin main / Para testar se estar funcionando;</li>
+            <li>Caso dê certo: Autenticação concluída;</li>
+        </ol>
+<br>
+    <li>E Pronto, Instalação e Configuração Feita Com Sucesso;</li>
+</ol>
+</ol>
+
+<h2>Sexto Passo: Instalação e Configuração do VSCode +;</h2>
+<ol>
+    <li>Primeiro Pesquisei o VSCode e o resultado me levou para;</li>
+    <ul>
+        <li><a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></li>
+    </ul>
+<br>
+    <li>Fazer download do "VSCode Windows (Installer) - x64";</li>
+<br>
+    <li>Assim que o download for concluído / Abrir o instalador;</li>
+        <ol type="a">
+            <li>Aceitar os termos de licenças;</li>
+            <li>C:\User\AppData\Local\Programs\Microsoft VS Code / Diretório de instalação;</li>
+            <li>Selecionar Tarefas Adicionais (Opcional) - Criar um atalho na Área de trabalho,
+            <br>Adicione a ação "Abrir com o Code" ao menu de contexto de arquivo do Windows
+            <br>Explorer (Opcional);</li>
+            <li>Adicione a ação "Abrir com o Code" ao menu de contexto de diretório do Windows 
+            <br>Explorer (Opcional);</li>
+        </ol>
+<br>
+    <li>Abrir o VS Code / instalar e configurar - Extenssões;</li>
+        <ol type="a">
+            <li>Prettier / Correção de código automaticamente;</li>
+            <li>Code Spell Checker / Corretor ortográfico;</li>
+            <li>PHP Intelephense / Melhor performace para linguagem em PHP;</li>
+            <li>PHP Debug / Usa do Xdebug direto no depurador do VS Code;</li>
+            <li>Auto Rename Tag / Completa as tags;</li>
+            <li>Npm intellisense / Usa pacotes e bibliotecas em grande número;</li>
+            <li>Quokka.js / Ele executa códigos imediatamente enquanto você digita 
+            <br>e exibe vários resultados de execução diretamente no VS Code;</li>
+            <li>CSS Formatter;</li>
+            <li>vscode-icons;</li>
+            <li>Bootstrap v4 Snippets;</li>
+            <li>HTML CSS Suport;</li>
+            <li>Tabnine Al Autocomplete;</li>
+            <li>Javascript (ES6) code snippets;</li>
+        </ol>
+<br>
+    <li>E Pronto, Instalação e Configuração Feita Com Sucesso;</li>
+</ol>
+</body>
+
+</html>
