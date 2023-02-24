@@ -8,7 +8,7 @@
 2. Instale e configure o PHP7.4; ✔️
 3. Instale e configure o MySQL 8+; ✔️
 4. Instale e configure o DBeaver; ✔️
-           a. Configure também, uma conexão a uma base vazia; ✔️
+           a. Configure também, uma conexão a uma base vazia; 
 5. Instale e configure o Git oficial, de https://git-scm.com; ✔️
 6. Instale e configure o VSCode +; ✔️
            a. Configure pelo menos 4, podem ser mais, extensões realmente úteis, para PHP, HTML, CSS e
@@ -25,9 +25,9 @@
 3. Gere uma base de dados, a partir do script que você criou antes, no servidor MySQL que você instalou
 na sua máquina; ✔️
 
-**Terceira Etapa;**
+**Terceira Etapa;** ⚙️
 
-*Desenvolvimento em Tecnologia Pura;*
+*Desenvolvimento em Tecnologia Pura;* ⚙️
 
 1. Desenvolver a Base de Dados; ✔️
 2. Implementar Backend; ✔️
