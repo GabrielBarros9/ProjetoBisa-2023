@@ -23,7 +23,15 @@ e instale e configure novamente, do zero. Realize as seguintes tarefas, na ordem
 
 *Desenvolver a Base de Dados;*
 
-1. Desenvolva o script SQL para gerar a base do sistema solicitado;
-2. Publique o script que você desenvolveu em um repositório git online;
+1. Desenvolva o script SQL para gerar a base do sistema solicitado; ✔️
+2. Publique o script que você desenvolveu em um repositório git online; ✔️
 3. Gere uma base de dados, a partir do script que você criou antes, no servidor MySQL que você instalou
-na sua máquina;
+na sua máquina; ✔️
+
+**Terceira Etapa;**
+
+*Desenvolvimento em Tecnologia Pura;*
+
+1. Desenvolver a Base de Dados; ✔️
+2. Implementar Backend; ✔️
+3. Implementar Frontend ⚙️ (Opcional);
