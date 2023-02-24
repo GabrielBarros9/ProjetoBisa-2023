@@ -14,7 +14,7 @@
            a. Configure pelo menos 4, podem ser mais, extensões realmente úteis, para PHP, HTML, CSS e
             Javascript; ✔️
             
-**Index.html;** -> *Mostra o passo a passo de todos os ambientes mencionados acima instalados;* ✔️
+**Index.html** -> *Mostra o passo a passo de todos os ambientes mencionados acima instalados;* ✔️
 
 **Segunda Etapa;** ✔️
 
